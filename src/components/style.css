@@ -50,3 +50,8 @@
   display: flex;
 }
 
+.hit_carddetail_area .fa-trash{
+  border: 1px solid red;
+  cursor: pointer;
+}
+

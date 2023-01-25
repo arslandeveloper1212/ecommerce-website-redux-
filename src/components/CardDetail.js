@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import {DLT} from '../redux/actions/action'
+import {useNavigate} from 'react-router-dom'
 
 const CardDetail = () => {
 
@@ -22,6 +24,14 @@ const CardDetail = () => {
   useEffect(() => {
     compare();
   }, [id])
+
+  const history = useNavigate();
+  const dispatch = useDispatch();
+
+  const dlt = (id) =>{
+    dispatch(DLT(id))
+    history("/")
+  }
 
   return (
     <div>
@@ -47,11 +57,11 @@ const CardDetail = () => {
                         <p> <strong> total </strong> : $ 345</p>
                       </td>
     
-                      <td >
+                      <td  className='hit_carddetail_area'>
                        
                         <p> <strong> Order Review </strong> : {ele.somedata}</p>
                         <p> <strong> Rating </strong> : {ele.rating}</p>
-                        <p><strong> Remove<i className='fas fa-trash mx-2' style={{ color: "red" }}></i></strong></p>
+                        <p><strong> Remove<i className='fas fa-trash mx-2' style={{ color: "red" }} onClick= {()=>dlt(ele.id)}></i></strong></p>
                       </td>
                     </tr>
                   </Table>

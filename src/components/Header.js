@@ -8,8 +8,9 @@ import '../components/style.css'
 import Menu from '@mui/material/Menu';
 
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from 'react-bootstrap/esm/Table';
+import {DLT} from '../redux/actions/action';
 
 
 
@@ -27,6 +28,12 @@ const Header = () => {
     setAnchorEl(null);
   };
 
+
+  const dispatch = useDispatch();
+
+  const dlt = (id) =>{
+    dispatch(DLT(id))
+  }
 
   return (
     <div>
@@ -70,7 +77,7 @@ const Header = () => {
                     <tr>
                       <th>Photo</th>
                       <th>Restaurant </th>
-                      <th>Restaurant </th>
+                      
                     </tr>
                   </thead>
 
@@ -94,7 +101,7 @@ const Header = () => {
                                
                                 </td>
 
-                                <td><strong>Remove</strong><i className='fas fa-trash mx-3 d-sm-flex flex-column' style = {{color:"red"}}></i></td>
+                                <td><strong>Remove</strong><i className='fas fa-trash mx-3 d-sm-flex flex-column' style = {{color:"red", cursor:"pointer"}} onClick = {()=>dlt(e.id) }></i></td>
                               </tr>
                             </div>
                           </div>
