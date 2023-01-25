@@ -62,6 +62,13 @@ const CardDetail = () => {
                         <p> <strong> Order Review </strong> : {ele.somedata}</p>
                         <p> <strong> Rating </strong> : {ele.rating}</p>
                         <p><strong> Remove<i className='fas fa-trash mx-2' style={{ color: "red" }} onClick= {()=>dlt(ele.id)}></i></strong></p>
+
+                        <div className='d-flex bg-light justify-content-between align-items-center' style={{cursor:"pointer", width: 100}}>
+                              <span style= {{fontSize:24}}> - </span>
+                              <span style= {{fontSize:24}}> {ele.qnty} </span>
+                              <span style= {{fontSize:24}}> + </span>
+                              </div>
+
                       </td>
                     </tr>
                   </Table>

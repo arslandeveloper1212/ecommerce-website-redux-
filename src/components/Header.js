@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
@@ -15,6 +15,9 @@ import {DLT} from '../redux/actions/action';
 
 
 const Header = () => {
+
+  const [price, setPrice] = useState(0);
+  console.log(price);
 
   const getdata = useSelector((state) => state.cartreducer.carts);
   console.log(getdata)
@@ -34,6 +37,18 @@ const Header = () => {
   const dlt = (id) =>{
     dispatch(DLT(id))
   }
+
+  const total = () =>{
+    let price = 0;
+    getdata.map((ele,k)=>{
+      price = ele.price + price
+    });
+    setPrice(price);
+  }
+
+  useEffect(()=>{
+    total();
+  },[total])
 
   return (
     <div>
@@ -102,14 +117,21 @@ const Header = () => {
                                 </td>
 
                                 <td><strong>Remove</strong><i className='fas fa-trash mx-3 d-sm-flex flex-column' style = {{color:"red", cursor:"pointer"}} onClick = {()=>dlt(e.id) }></i></td>
+                               
                               </tr>
+                              <div className='d-flex bg-grey'>
+                              <span>-</span>
+                              </div>
                             </div>
+                          
                           </div>
+                         
                         )
                       })
+                    
                     }
 
-
+                    <td>total : ${price}</td>
                   </tbody>
                 </Table>
               </div>
